@@ -3,7 +3,9 @@ import { css } from "@pigment-css/react";
 
 export const containerClass = css({
   minHeight: "inherit",
-  padding: "var(--gutter-block) var(--gutter-inline)",
+  padding: "var(--container-gutter-block) var(--container-gutter-inline)",
+  position: "relative",
+  boxSizing: "border-box",
 });
 
 export default function Home() {

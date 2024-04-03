@@ -17,7 +17,7 @@ const htmlClass = css({
 });
 
 const bodyClass = css({
-  margin: 0,
+  margin: "0 auto",
   minHeight: "100vh",
   maxWidth: "1560px",
 });

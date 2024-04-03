@@ -2,13 +2,28 @@
 
 import Image from "next/image";
 import { css, styled } from "@pigment-css/react";
-import { containerClass } from "../../page";
-
-import Nav from "../Nav/Nav";
-import Link from "next/link";
-
 import { useState } from "react";
-import { size } from "@/app/helpers/index";
+import { size } from "../../helpers/index";
+import Nav from "../Nav/Nav";
+import MenuModal from "../MenuModal/MenuModal";
+
+export const MenuToggleButton = styled("button")({
+  position: "fixed",
+  left: "var(--container-gutter-inline)",
+  top: size(14.75),
+  backgroundColor: "var(--c-secondary-default)",
+  display: "none",
+  alignSelf: "center",
+  maxWidth: "fit-content",
+  border: "none",
+  padding: `${size(2.5)} ${size(3.25)}`,
+  gap: size(2.75),
+  cursor: "pointer",
+  borderRadius: "max(100vh, 100vw)",
+  "@media (min-width: 768px)": {
+    display: "flex",
+  },
+});
 
 export default function Header() {
   const headerClass = css({
@@ -27,31 +42,24 @@ export default function Header() {
     },
   });
 
-  const hamburgerIcon = css({
-    display: "block",
+  const menuBtnClass = css({
+    maxWidth: "fit-content",
+    alignSelf: "center",
+    fontFamily: "var(--font-dmsans)",
+    fontSize: "17px",
+    alignItems: "center",
+    gap: size(1),
+
+    background: "transparent",
+    border: "none",
+    color: "var(--c-primary-light)",
+    cursor: "pointer",
+    padding: 0,
+
+    display: "flex",
     "@media (min-width: 1000px)": {
       display: "none",
     },
-    cursor: "pointer",
-  });
-
-  const modalClass = css({
-    background: "green",
-    display: "block",
-    position: "absolute",
-    left: 0,
-    top: 0,
-    width: "100%",
-    height: "100%",
-    gap: size(2),
-  });
-
-  const mailtoClass = css({
-    paddingBlock: size(2),
-  });
-
-  const addressBoxClass = css({
-    position: "relative",
   });
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
@@ -62,27 +70,40 @@ export default function Header() {
         <Image src="/logo/logo-white.svg" fill alt="OurStudio logo" />
       </div>
       <Nav navType="Secondary" />
-      <Image
-        className={hamburgerIcon}
-        src="/icons/hamburger-menu-white.svg"
-        width={32}
-        height={18}
-        alt="Show Hamburger Menu"
+      <button
+        title="Show menu"
+        className={menuBtnClass}
+        onClick={() => setShowHamburgerMenu((prev) => !prev)}
+      >
+        <Image
+          src="/icons/hamburger-menu-white.svg"
+          width={32}
+          height={18}
+          alt="Show menu"
+          aria-hidden={true}
+        />
+      </button>
+      <MenuToggleButton
+        onClick={() => setShowHamburgerMenu((prev) => !prev)}
+        title="Hide/Show menu"
+      >
+        <Image
+          src="/logo/logo-o.svg"
+          width={34}
+          height={26}
+          alt="OurStudio logo"
+        />
+        <Image
+          src="/icons/hamburger-menu-black.svg"
+          width={34}
+          height={26}
+          alt="OurStudio logo"
+        />
+      </MenuToggleButton>
+      <MenuModal
+        showHamburgerMenu={showHamburgerMenu}
+        setShowHamburgerMenu={setShowHamburgerMenu}
       />
-
-      <div className={modalClass} aria-label="Modal">
-        <div className={containerClass}>
-          <Nav navType="Primary" />
-          <div className={addressBoxClass}>
-            <Link className={mailtoClass} href="mailto:hello@ourstudio.se">
-              hello@ourstudio.se
-            </Link>
-            <p>Our Studio</p>
-            <p>Kungsgatan 57</p>
-            <p>411 15 Göteborg</p>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }

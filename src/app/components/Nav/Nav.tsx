@@ -2,12 +2,15 @@ import { css } from "@pigment-css/react";
 import Link from "next/link";
 import { NavLinks } from "./NavLinks";
 import { size } from "../../helpers/index";
+import { relative } from "node:path/win32";
 
 export default function Nav({ navType }: { navType: "Primary" | "Secondary" }) {
   const navClassPrimary = css({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    gridRow: "2 / span 1",
+    zIndex: 2,
   });
 
   const navClassSecondary = css({
@@ -31,7 +34,7 @@ export default function Nav({ navType }: { navType: "Primary" | "Secondary" }) {
   const ulClassPrimary = css({
     flexDirection: "column",
     fontSize: "1.5rem",
-    minHeight: "100%",
+    fontWeight: 600,
     alignItems: "flex-start",
     gap: size(2),
   });
@@ -46,6 +49,22 @@ export default function Nav({ navType }: { navType: "Primary" | "Secondary" }) {
   const aClassPrimary = css({
     fontSize: "1.5rem",
     width: "fit-content",
+    "&:before": {
+      content: '""',
+      display: "block",
+      position: "relative",
+      minWidth: "32px",
+      maxHeight: "1px",
+      lineHeight: "1px",
+      color: "var(--c-secondary-default)",
+    },
+    "&:hover": {
+      color: "var(--c-secondary-default)",
+    },
+    "@media (min-width: 768px)": {
+      fontSize: "2.25rem",
+      gap: size(3),
+    },
   });
 
   const navLinks = NavLinks.map((link) => {

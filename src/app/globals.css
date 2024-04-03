@@ -3,7 +3,7 @@
 /* Palette */
 
 --_palette-greyscale-100: rgba(255, 255, 255, 1);
---_palette-greyscale-700: rgba(20, 20, 20, 1);
+--_palette-greyscale-700: rgba(24, 24, 24, 1);
 --_palette-greyscale-900: rgba(0, 0, 0, 1);
 --_palette-yellow-300: rgba(254, 238, 190, 1);
 
@@ -16,15 +16,16 @@
 
 /* Sizing */
 
---gutter-inline: 32px;
---gutter-block: 28px;
+--container-gutter-inline: 32px;
+--container-gutter-block: 28px;
 }
+
 
 @media (min-width: 768px) {
 
   :root {
-    --gutter-inline: 40px;
-    --gutter-block: 40px;
+    --container-gutter-inline: 40px;
+    --container-gutter-block: 40px;
   }
 
 }
