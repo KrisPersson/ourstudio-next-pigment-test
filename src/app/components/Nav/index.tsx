@@ -2,7 +2,6 @@ import { css } from "@pigment-css/react";
 import Link from "next/link";
 import { NavLinks } from "./NavLinks";
 import { size } from "../../helpers/index";
-import { relative } from "node:path/win32";
 
 export default function Nav({ navType }: { navType: "Primary" | "Secondary" }) {
   const navClassPrimary = css({
