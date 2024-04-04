@@ -3,10 +3,10 @@ import Link from "next/link";
 
 import { css } from "@pigment-css/react";
 import { useState } from "react";
-import { containerClass } from "../../page";
 import { size } from "../../helpers/index";
-import Nav from "../Nav/Nav";
-import { MenuToggleButton } from "../Header/Header";
+import Nav from "../Nav/index";
+import { MenuToggleButton } from "../../styled-components/MenuToggleButton/index";
+import { Container } from "../../styled-components/Container/index";
 
 export default function MenuModal({
   showHamburgerMenu,
@@ -113,7 +113,7 @@ export default function MenuModal({
       style={{ display: displayValue }}
       aria-label="Menu"
     >
-      <div className={containerClass}>
+      <Container>
         <div className={modalContentWrapper}>
           <MenuToggleButton
             onClick={() => setShowHamburgerMenu((prev) => !prev)}
@@ -169,7 +169,7 @@ export default function MenuModal({
             aria-hidden={true}
           />
         </div>
-      </div>
+      </Container>
     </div>
   );
 }
